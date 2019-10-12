@@ -1,3 +1,4 @@
+ 
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -9,38 +10,90 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
+      appBar: null,
+      body: Container(
+        decoration: BoxDecoration(
+         gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomCenter,
-                colors: [Colors.indigoAccent, Colors.indigo[800]])),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                 Container(
-                   width: 300,
-                   height: 450,
-                   child: Card(
-                     elevation: 8,
-                     child:
-                   Column(
-                     children: <Widget>[
-                       Text("Login",style: TextStyle(fontSize: 22,),),
-                       TextField(decoration: InputDecoration(border: OutlineInputBorder()),),
-                       Divider(color: Colors.transparent,),
-                       TextField(decoration: InputDecoration(border: OutlineInputBorder()),),
-                       FlatButton(
-                         onPressed: (){},
-                         child: Text
-                       ("Entrar"),
-                       ),
-                     ],),
-                   ),
-                 ),
-              ],
+                colors: [Colors.green, Colors.green[700]])
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Card(
+              elevation: 5,
+              child: Form(
+                child: Container(
+                  width: 320.0,
+                  height: 420.0,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Text(
+                            "Login",
+                            style: TextStyle(
+                                fontSize: 26.0,color: Colors.black87)
+                          ),
+                          SizedBox(
+                            width: 280.0,
+                            child: Divider(
+                              color: Color.fromRGBO(204, 204, 204, 1),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 50.0,
+                        width: 280.0,
+                        child: TextField(
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Usuario",
+                          ),
+                          keyboardType: TextInputType.text,
+                        ),
+                      ),
+                      Column(
+                        children: <Widget>[
+                          SizedBox(
+                            width: 280.0,
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: "Senha",
+                              ),
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(top: 10.0,),
+                            alignment: Alignment.center,
+                              child: Text(
+                            "Criar Conta",
+                            style: TextStyle(
+                                 fontSize: 12.0, ),
+                          ))
+                        ],
+                      ),
+                      Container(
+                        width: 280.0,
+                        
+                        child: RaisedButton(
+                          onPressed: (){},
+                          color: Colors.green,  
+                          child: Text(
+                            "Entrar",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),
