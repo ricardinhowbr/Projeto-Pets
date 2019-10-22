@@ -11,30 +11,74 @@ namespace petApi.Controllers
     [Route("pet/api/[Controller]")]
     public class UsuariosController : Controller
     {
-        private readonly IUsuarioRepository repository;
+        private readonly IUsuarioRepository usuRepository;
 
         public UsuariosController(IUsuarioRepository repo)
         {
             //Injetar o serviço do repositório...
-            this.repository = repo;
+            this.usuRepository = repo;
         }
 
 
-        [HttpGet("id", Name="ObterUsuario")]
+        [HttpGet("{id}", Name="ObterUsuario")]
         public IEnumerable<Usuario> GetAll()
         {
-            return this.repository.Getall();
+            return this.usuRepository.Getall();
         }
 
         [HttpGet]
         public IActionResult ObterUsuario(int id) 
         {
-            var usu = this.repository.Obter(id);
+            var usu = this.usuRepository.Obter(id);
 
             if(usu == null)
                 return NotFound();
             
             return new ObjectResult(usu);
+        }
+
+        [HttpPost]
+        public IActionResult Criar([FromBody] Usuario usu)
+        {
+            if(usu == null)
+                return BadRequest();
+
+            this.usuRepository.AddUsuario(usu);
+
+            return CreatedAtRoute("ObterUsuario", new { Id = usu.Id}, usu);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, [FromBody] Usuario usu)
+        {
+            if(usu == null || usu.Id != id)
+                return BadRequest();
+
+            var usuario = this.usuRepository.Obter(id);
+
+            if(usuario == null)
+                return NotFound();
+
+            //Alterando apenas duas propriedades para testar
+            usuario.Nome = usu.Nome;
+            usuario.Email = usu.Email;
+
+            this.usuRepository.Update(usuario);
+
+            return new NoContentResult(); //Status code 204
+        }
+
+        [HttpDelete]
+        public IActionResult Deletar(int id)
+        {
+            var usuario = this.usuRepository.Obter(id);
+
+            if(usuario == null)
+                return NotFound();
+
+            this.usuRepository.Remove(id);
+
+            return new NoContentResult();  //Status code 204
         }
     }
 }
