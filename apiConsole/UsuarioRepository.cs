@@ -23,10 +23,11 @@ namespace apiConsole
         {
             HttpResponseMessage response = await this.client.GetAsync("pet/api/usuarios");
 
-            if(response.IsSucessStatusCode)
+            if(response.IsSuccessStatusCode)
             {
                 var dados = await response.Content.ReadAsStringAsync();
-                return new JsonConvert.DeserializerObject<List<Usuario>>(dados);
+                
+                return JsonConvert.DeserializeObject<List<Usuario>>(dados);
             }
 
             return new List<Usuario>();

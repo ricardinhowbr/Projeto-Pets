@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace petApi.DTO
 {
+    [Table("Usuarios")]
     public class Usuario
     {
         public int Id { get; set; }

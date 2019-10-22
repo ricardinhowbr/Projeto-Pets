@@ -42,5 +42,30 @@ namespace petApi.Repositorio
             this.contexto.Usuarios.Update(usu);
             this.contexto.SaveChanges();
         }
+
+        public Usuario Autenticar(string username, string password)
+        {
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return null;
+ 
+            var user = this.contexto.Usuarios.SingleOrDefault(x => x.Nome == username && x.Senha==password);
+ 
+            if (user == null)
+                return null;
+ 
+            // check if password is correct
+            // if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            //     return null;
+ 
+            // authentication successful
+            return user;
+        }
+
+        public void Remove(long id)
+        {
+            var entity = this.contexto.Usuarios.First(u=> u.Id == id);
+            this.contexto.Usuarios.Remove(entity);
+            this.contexto.SaveChanges();
+        }
     }
 }

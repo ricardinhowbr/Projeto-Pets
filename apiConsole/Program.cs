@@ -13,7 +13,7 @@ namespace apiConsole
 
             var repo = new UsuarioRepository();
 
-            var usuariosTask = repo.GetUsuariosAsync(); 
+            var usuariosTask = repo.GetUsuarioAsyn(); 
 
             usuariosTask.ContinueWith(task =>
             {

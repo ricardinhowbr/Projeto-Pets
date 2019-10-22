@@ -14,5 +14,7 @@ namespace petApi.Repositorio
         void Remove(int id);
 
         void Update(Usuario usu);
+
+        Usuario Autenticar(string usuario, string senha);
     }
 }

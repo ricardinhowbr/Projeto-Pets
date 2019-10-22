@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 using petApi.DTO;
 using petApi.Repositorio;
@@ -9,6 +10,7 @@ using petApi.Repositorio;
 namespace petApi.Controllers
 {
     [Route("pet/api/[Controller]")]
+    [Authorize()]
     public class UsuariosController : Controller
     {
         private readonly IUsuarioRepository usuRepository;
@@ -79,6 +81,18 @@ namespace petApi.Controllers
             this.usuRepository.Remove(id);
 
             return new NoContentResult();  //Status code 204
+        }
+
+        [AllowAnonymous]
+        [HttpPost("autenticar")]
+        public IActionResult Autenticar([FromBody] Usuario usuario)
+        {
+            var usu = this.usuRepository.Autenticar(usuario.Nome, usuario.Senha);
+ 
+            if (usu == null)
+                return Unauthorized();
+ 
+            return new ObjectResult(usu);
         }
     }
 }
