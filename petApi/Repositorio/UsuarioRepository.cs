@@ -2,8 +2,9 @@ using System.Linq;
 using System.Collections.Generic;
 
 using petApi.DTO;
+using petApi.Repository;
 
-namespace petApi.Repositorio
+namespace petApi.Repository
 {
     public class UsuarioRepository : IUsuarioRepository
     {

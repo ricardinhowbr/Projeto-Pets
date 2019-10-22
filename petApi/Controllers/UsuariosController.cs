@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
 using petApi.DTO;
-using petApi.Repositorio;
+using petApi.Repository;
 
 namespace petApi.Controllers
 {
