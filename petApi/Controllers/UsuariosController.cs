@@ -8,6 +8,7 @@ using petApi.Repositorio;
 
 namespace petApi.Controllers
 {
+    [Route("pet/api/[Controller]")]
     public class UsuariosController : Controller
     {
         private readonly IUsuarioRepository repository;
