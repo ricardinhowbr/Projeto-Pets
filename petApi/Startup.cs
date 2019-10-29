@@ -11,6 +11,7 @@ using petApi.Repository;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace petApi
 {
@@ -31,6 +32,7 @@ namespace petApi
 
             //regristrando serviço....
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
              //especifica o esquema usado para autenticacao do tipo Bearer
             // e 
