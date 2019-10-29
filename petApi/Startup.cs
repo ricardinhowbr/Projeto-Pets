@@ -14,6 +14,8 @@ using petApi.DTO;
 using petApi.Repository;
 
 using Microsoft.AspNetCore.Http;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
 
 namespace petApi
 {
@@ -31,6 +33,19 @@ namespace petApi
         {
             services.AddDbContext<UsuarioDBContext>( 
                 options => options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
+
+            //Neste código obtemos a string de conexão a seguir definimos uma instância da 
+            //sessionfactory informando a string de conexão usada e o provedor do banco de dados SqlServer.
+            //A seguir estamos retornando uma instância da conexão com o banco de dados aberta usando 
+            //AddScoped o que garante que teremos aberta apenas uma conexão.
+            var sesisonFactory = Fluently.Configure()
+                    .Database(MsSqlConfiguration.MsSql2012.ConnectionString(Configuration.GetConnectionString("Conexao")))
+                    .Mappings(m => m.FluentMappings.AddFromAssembly(GetType().Assembly))
+                    .BuildSessionFactory();
+
+            services.AddScoped(factory => {
+                return sesisonFactory.OpenSession();
+            });
 
             //regristrando serviço....
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
