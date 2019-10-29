@@ -41,7 +41,8 @@ public class RepositoryFactory : IRepositoryFactory
     {
         lock (this.objLock)
         {
-            var httpRequesting = false;
+            //TODO: Preparar para receber pedidos de novas instâncias que não estejam atreladas a uma requsição...
+            var httpRequesting = true; 
 
             if (ManagedWebSession && httpRequesting)
             {
@@ -109,12 +110,18 @@ public class RepositoryFactory : IRepositoryFactory
 
     public DateTime DataAtual()
     {
-        throw new NotImplementedException();
+        var session = this.ObterSessao();
+        var query = session.CreateQuery("select current_timestamp() from Dominio ");
+
+        query.SetMaxResults(1);
+        query.SetTimeout(timeout);
+
+        return query.UniqueResult<DateTime>();
     }
 
     public ITransaction AbrirTransacao()
     {
-        throw new NotImplementedException();
+        return this.ObterSessao().BeginTransaction();
     }
 
     public IRepository<T> NewRepository<T>() where T : EntidadeBase

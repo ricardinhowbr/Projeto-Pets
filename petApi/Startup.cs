@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using petApi.DTO;
 using petApi.Repository;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
+
 using Microsoft.AspNetCore.Http;
 
 namespace petApi
@@ -34,9 +36,8 @@ namespace petApi
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-             //especifica o esquema usado para autenticacao do tipo Bearer
-            // e 
-            //define configurações como chave,algoritmo,validade, data expiracao...
+             //especifica o esquema usado para autenticacao do tipo Bearer... 
+            //define configurações como chave, algoritmo, validade, data expiracao...
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options => {
                 options.TokenValidationParameters = new TokenValidationParameters

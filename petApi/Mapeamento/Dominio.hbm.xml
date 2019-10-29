@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true"
+ namespace="petApi.DTO" assembly="petApi.Dados">
+  <class name="Dominio" table="domain$" lazy="true">
+    <composite-id>
+      <key-property name="Codigo" column="CODE$" type="System.String" />
+      <key-property name="Campo" column="FIELD$" type="System.String" />
+    </composite-id>
+    <property name="Texto" column="Text$" type="System.String" />
+    <property name="UsuarioFinal" column="EndUser$" type="System.Boolean" />
+    <property name="Abreviatura" column="Abbrev$" type="System.String" />
+    <property name="Desabilitado" column="Disabled$" type="System.Boolean" />
+    <property name="Cor" column="Color$" type="System.String" />
+    <property name="CodigoExterno" column="CodExt$" type="System.String" />
+  </class>
+</hibernate-mapping>
