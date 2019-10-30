@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:saude_pet/ui/cadastro_alarme.dart';
+import 'package:saude_pet/ui/cadastro_page.dart';
+import 'package:saude_pet/ui/cadastro_pet.dart';
+import 'package:saude_pet/ui/cadastro_vacina.dart';
+import 'package:saude_pet/ui/home_page.dart';
+import 'package:saude_pet/ui/list_pet.dart';
+import 'package:saude_pet/ui/list_vacina.dart';
+import 'package:saude_pet/ui/lista_vacina.dart';
 import 'package:saude_pet/ui/login.dart';
+import 'package:saude_pet/ui/perfil_usuario.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: Login(),
-    theme: ThemeData(
-        primaryColorDark: Color.fromRGBO(56, 142, 60, 1),
-        primaryColorLight: Color.fromRGBO(200,230,201,1),
-        primaryColor: Colors.green,
-        accentColor: Color.fromRGBO(139, 195, 74, 1),
-        dividerColor: Color.fromRGBO(189,189,189,1)
-        ),
-    debugShowCheckedModeBanner: false,
-  ));
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      routes: {
+        "/" : (context) => LoginPage(),
+        "/cadastro": (context) => CadastroPage(),
+        "/cadastroPet": (context) => CadastroPagePet(),
+        "/listaPet": (context) => ListaPetPage(),
+        "/perfilUsuario": (context) => PerfilUsuario(),
+        "/cadastroAlarme": (context) => CadastroAlarme(),
+        "/cadastroVacina": (context) => CadastroVacina(),
+        "/listaVacina": (context) => ListaVacina(),
+        "/listaVacinaHistorico": (context) => ListaVacinaHistorico(),
+        "/homePage": (context) => HomePage()
+      },
+    );
+  }
 }
