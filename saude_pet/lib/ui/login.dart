@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saude_pet/components/input.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -22,25 +23,8 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
 
-    final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
-      autofocus: false,
-      decoration: InputDecoration(
-        hintText: 'Email',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-    );
-
-    final password = TextFormField(
-      autofocus: false,
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: 'Password',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-    );
+    final email = new TextInput(textHintInput: 'Email');
+    final password = new PasswordInput(passwordHintInput: "Senha");
 
     final loginButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
@@ -88,3 +72,4 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+

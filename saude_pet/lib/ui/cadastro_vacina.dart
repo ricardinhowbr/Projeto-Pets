@@ -82,13 +82,6 @@ class _CadastroVacinaState extends State<CadastroVacina> {
         title: Text("Cadastro de Vacina"),
         centerTitle: true,
         elevation: 0,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: (){},
-            color: Colors.white,
-          )
-        ],
       ),
       backgroundColor: Colors.white,
       body: Center(

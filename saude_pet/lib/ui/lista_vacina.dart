@@ -22,7 +22,7 @@ class _ListaVacinaState extends State<ListaVacina> {
             padding: EdgeInsets.only(left: 24.0, right: 24.0),
             children: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CardListImage(
                     titleCard: "Lista de Vacinas",
@@ -37,6 +37,7 @@ class _ListaVacinaState extends State<ListaVacina> {
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   CardList(
                     titleCard: "Busca Vacina",
