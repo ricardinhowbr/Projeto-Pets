@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using petApi.DTO;
-using petApi.Repositorio;
+using petApi.Repository;
 
 namespace petApi.Controllers
 {

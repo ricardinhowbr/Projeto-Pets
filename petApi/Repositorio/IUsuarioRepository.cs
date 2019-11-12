@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using petApi.DTO;
 
-namespace petApi.Repositorio
+namespace petApi.Repository
 {
     public interface IUsuarioRepository
     {
