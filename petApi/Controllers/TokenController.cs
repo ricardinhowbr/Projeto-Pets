@@ -32,7 +32,7 @@ namespace petApi.Controllers
             //Método para gerar um token para usuários que estão pedindo autenticação, validando suas credenciais.
 
             //TODO: -> elaborar validação mais decente...
-            if(request.nome_usu == "Teste" && request.senha=="naumsei")
+            if(request.login == "Teste" && request.senha=="naumsei")
             {
                 var claims = new[]
                 {

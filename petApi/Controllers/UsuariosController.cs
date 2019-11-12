@@ -29,7 +29,7 @@ namespace petApi.Controllers
             return this.usuRepository.Getall();
         }
 
-        [HttpGet("Obter")]
+        [HttpGet("ObterUsuario/{id}")]
         public IActionResult ObterUsuario(int id) 
         {
             var usu = this.usuRepository.Obter(id);
@@ -51,7 +51,7 @@ namespace petApi.Controllers
             return CreatedAtRoute("ObterUsuario", new { Id = usu.cod_usuario}, usu);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Atualizar/{id}")]
         public IActionResult Atualizar(int id, [FromBody] Usuario usu)
         {
             if(usu == null || usu.cod_usuario != id)
@@ -72,7 +72,7 @@ namespace petApi.Controllers
         }
 
 
-        [HttpDelete]
+        [HttpDelete("Deletar/{id}")]
         public IActionResult Deletar(int id)
         {
             var usuario = this.usuRepository.Obter(id);
