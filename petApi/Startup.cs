@@ -11,6 +11,8 @@ using petApi.Repositorio;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using petApi.DataEF;
+using Microsoft.AspNetCore.Http;
 
 namespace petApi
 {
@@ -26,13 +28,21 @@ namespace petApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<UsuarioDBContext>( 
-                options => options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
+
+            services.Configure<IISOptions>(options => 
+            {
+                options.AutomaticAuthentication = false;
+                //options.ForwardClientCertificate = false;
+            });
+
+            services.AddDbContext<AnimalDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
+            services.AddDbContext<UsuarioDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
+            services.AddDbContext<VacinaDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
 
             //regristrando serviço....
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-
-             //especifica o esquema usado para autenticacao do tipo Bearer
+            
+            //especifica o esquema usado para autenticacao do tipo Bearer
             // e 
             //define configurações como chave,algoritmo,validade, data expiracao...
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -43,8 +53,8 @@ namespace petApi
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "teste pudim",
-                    ValidAudience = "teste pudim",
+                    ValidIssuer = "Teste Pudim Issuer",
+                    ValidAudience = "Teste Pudim Audience",
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
                 };
@@ -58,7 +68,7 @@ namespace petApi
                     },
                     OnTokenValidated = context =>
                     {
-                        Console.WriteLine("Toekn válido...: " + context.SecurityToken);
+                        Console.WriteLine("Token válido...: " + context.SecurityToken);
                         return Task.CompletedTask;
                     }
                 };
@@ -77,7 +87,14 @@ namespace petApi
 
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            
             app.UseMvc();
+            // app.UseMvc(routes =>
+            // {
+            //     routes.MapRoute(
+            //         name: "default",
+            //         template: "pet/api/{controller=Home}/{action=Index}/{id?}");
+            // });
         }
     }
 }

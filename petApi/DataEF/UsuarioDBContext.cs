@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using petApi.DTO;
 
-namespace petApi.DTO
+namespace petApi.DataEF
 {
     public class UsuarioDBContext : DbContext
     {
@@ -12,6 +13,6 @@ namespace petApi.DTO
         {
         }
 
-        public DbSet<Usuario> Usuarios {get; set;}
+        public DbSet<Usuario> Usuario {get; set;}
     }
 }

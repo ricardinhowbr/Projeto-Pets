@@ -1,8 +1,10 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using petApi.DTO;
 using petApi.Repositorio;
@@ -21,14 +23,13 @@ namespace petApi.Controllers
             this.usuRepository = repo;
         }
 
-
-        [HttpGet("{id}", Name="ObterUsuario")]
+        [HttpGet("listar")]
         public IEnumerable<Usuario> GetAll()
         {
             return this.usuRepository.Getall();
         }
 
-        [HttpGet]
+        [HttpGet("Obter")]
         public IActionResult ObterUsuario(int id) 
         {
             var usu = this.usuRepository.Obter(id);
@@ -39,7 +40,7 @@ namespace petApi.Controllers
             return new ObjectResult(usu);
         }
 
-        [HttpPost]
+        [HttpPost("Add")]
         public IActionResult Criar([FromBody] Usuario usu)
         {
             if(usu == null)
@@ -47,13 +48,13 @@ namespace petApi.Controllers
 
             this.usuRepository.AddUsuario(usu);
 
-            return CreatedAtRoute("ObterUsuario", new { Id = usu.Id}, usu);
+            return CreatedAtRoute("ObterUsuario", new { Id = usu.cod_usuario}, usu);
         }
 
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] Usuario usu)
         {
-            if(usu == null || usu.Id != id)
+            if(usu == null || usu.cod_usuario != id)
                 return BadRequest();
 
             var usuario = this.usuRepository.Obter(id);
@@ -62,13 +63,14 @@ namespace petApi.Controllers
                 return NotFound();
 
             //Alterando apenas duas propriedades para testar
-            usuario.Nome = usu.Nome;
-            usuario.Email = usu.Email;
+            usuario.nome = usu.nome;
+            usuario.email = usu.email;
 
             this.usuRepository.Update(usuario);
 
             return new NoContentResult(); //Status code 204
         }
+
 
         [HttpDelete]
         public IActionResult Deletar(int id)
@@ -87,12 +89,19 @@ namespace petApi.Controllers
         [HttpPost("autenticar")]
         public IActionResult Autenticar([FromBody] Usuario usuario)
         {
-            var usu = this.usuRepository.Autenticar(usuario.Nome, usuario.Senha);
- 
-            if (usu == null)
-                return Unauthorized();
- 
-            return new ObjectResult(usu);
+            try
+            {
+                var usu = this.usuRepository.Autenticar(usuario.nome, usuario.senha);
+    
+                if (usu == null)
+                    return Unauthorized();
+    
+                return new ObjectResult(usu);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

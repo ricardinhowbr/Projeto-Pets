@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 namespace petApi.Controllers
 {
     [Route("pet/api/[Controller]")]
+    [ApiController]
+
     public class TokenController : Controller
     {
         private readonly IConfiguration configuration;
@@ -30,11 +32,11 @@ namespace petApi.Controllers
             //Método para gerar um token para usuários que estão pedindo autenticação, validando suas credenciais.
 
             //TODO: -> elaborar validação mais decente...
-            if(request.Nome == "Teste" && request.Senha=="naumsei")
+            if(request.nome == "Teste" && request.senha=="naumsei")
             {
                 var claims = new[]
                 {
-                     new Claim(ClaimTypes.Name, request.Nome)
+                     new Claim(ClaimTypes.Name, request.nome)
                      //,new Claim(ClaimTypes.Role, "Admin") //Definir perfil do usuários, se quiser...
                 };
 
@@ -45,13 +47,13 @@ namespace petApi.Controllers
                //recebe um objeto do tipo SigninCredentials contendo a chave de 
                //criptografia e o algoritmo de segurança empregados na geração 
                // de assinaturas digitais para tokens
-               var creds = new SigningCredentials(key, SecurityAlgorithms.RsaSha256); 
+               var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); 
 
                var token = new JwtSecurityToken(
-                    issuer: "teste...",  //emissor
-                    audience: "validation...", 
+                    issuer: "Teste Pudim Issuer",  //emissor
+                    audience: "Teste Pudim Audience", 
                     claims: claims,
-                    expires: DateTime.Now.AddMinutes(5), //Validade do token
+                    expires: DateTime.Now.AddMinutes(15), //Validade do token
                     signingCredentials: creds
                     );
 

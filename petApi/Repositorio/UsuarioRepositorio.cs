@@ -2,6 +2,8 @@ using System.Linq;
 using System.Collections.Generic;
 
 using petApi.DTO;
+using petApi.DataEF;
+using System;
 
 namespace petApi.Repositorio
 {
@@ -16,39 +18,39 @@ namespace petApi.Repositorio
 
         public void AddUsuario(Usuario usu)
         {
-            this.contexto.Usuarios.Add(usu);
+            this.contexto.Usuario.Add(usu);
             this.contexto.SaveChanges();
         }
 
         public IEnumerable<Usuario> Getall()
         {
-            return this.contexto.Usuarios.ToList();
+            return this.contexto.Usuario.ToList();
         }
 
         public Usuario Obter(int id)
         {
-            return this.contexto.Usuarios.FirstOrDefault(usu => usu.Id == id);
+            return this.contexto.Usuario.FirstOrDefault(usu => usu.cod_usuario == id);
         }
 
         public void Remove(int id)
         {
-            var usuario = this.contexto.Usuarios.FirstOrDefault(usu => usu.Id == id);
-            this.contexto.Usuarios.Remove(usuario);
+            var usuario = this.contexto.Usuario.FirstOrDefault(usu => usu.cod_usuario == id);
+            this.contexto.Usuario.Remove(usuario);
             this.contexto.SaveChanges();
         }
 
         public void Update(Usuario usu)
         {
-            this.contexto.Usuarios.Update(usu);
+            this.contexto.Usuario.Update(usu);
             this.contexto.SaveChanges();
         }
 
         public Usuario Autenticar(string username, string password)
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                return null;
+                throw new Exception("Parâmetros inválidos!!");
  
-            var user = this.contexto.Usuarios.SingleOrDefault(x => x.Nome == username && x.Senha==password);
+            var user = this.contexto.Usuario.SingleOrDefault(x => x.login == username && x.senha==password);
  
             if (user == null)
                 return null;
@@ -63,8 +65,8 @@ namespace petApi.Repositorio
 
         public void Remove(long id)
         {
-            var entity = this.contexto.Usuarios.First(u=> u.Id == id);
-            this.contexto.Usuarios.Remove(entity);
+            var entity = this.contexto.Usuario.First(u=> u.cod_usuario == id);
+            this.contexto.Usuario.Remove(entity);
             this.contexto.SaveChanges();
         }
     }
