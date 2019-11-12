@@ -32,7 +32,7 @@ namespace petApi.Controllers
             //Método para gerar um token para usuários que estão pedindo autenticação, validando suas credenciais.
 
             //TODO: -> elaborar validação mais decente...
-            if(request.login == "Teste" && request.senha=="naumsei")
+            if(request.login == "admin" && request.senha=="123")
             {
                 var claims = new[]
                 {
@@ -44,20 +44,20 @@ namespace petApi.Controllers
                 var key = new SymmetricSecurityKey(
                     Encoding.UTF8.GetBytes(configuration["SecurityKey"])); //Chave que foi adicionada no appsettings.json
 
-               //recebe um objeto do tipo SigninCredentials contendo a chave de 
-               //criptografia e o algoritmo de segurança empregados na geração 
-               // de assinaturas digitais para tokens
-               var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); 
+                //recebe um objeto do tipo SigninCredentials contendo a chave de 
+                //criptografia e o algoritmo de segurança empregados na geração 
+                // de assinaturas digitais para tokens
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); 
 
-               var token = new JwtSecurityToken(
-                    issuer: "Teste Pudim Issuer",  //emissor
-                    audience: "Teste Pudim Audience", 
+                var token = new JwtSecurityToken(
+                    issuer: configuration["Issuer"],  //emissor - Teste Pudim Issuer"
+                    audience: configuration["Audience"], //"Teste Pudim Audience"
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(15), //Validade do token
                     signingCredentials: creds
-                    );
+                );
 
-                return Ok(new
+                return Ok(new 
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token)
                 });

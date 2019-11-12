@@ -53,8 +53,8 @@ namespace petApi
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "Teste Pudim Issuer",
-                    ValidAudience = "Teste Pudim Audience",
+                    ValidIssuer = Configuration["Issuer"],
+                    ValidAudience = Configuration["Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(
                         Encoding.UTF8.GetBytes(Configuration["SecurityKey"]))
                 };

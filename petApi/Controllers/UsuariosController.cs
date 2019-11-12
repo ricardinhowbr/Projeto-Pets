@@ -23,13 +23,15 @@ namespace petApi.Controllers
             this.usuRepository = repo;
         }
 
-        [HttpGet("listar")]
+        [Route("listar")]
+        [HttpGet]
         public IEnumerable<Usuario> GetAll()
         {
             return this.usuRepository.Getall();
         }
 
-        [HttpGet("ObterUsuario/{id}")]
+        [Route("ObterUsuario")]
+        [HttpGet]
         public IActionResult ObterUsuario(int id) 
         {
             var usu = this.usuRepository.Obter(id);
@@ -40,7 +42,8 @@ namespace petApi.Controllers
             return new ObjectResult(usu);
         }
 
-        [HttpPost("Add")]
+        [Route("Add")]
+        [HttpPost]
         public IActionResult Criar([FromBody] Usuario usu)
         {
             if(usu == null)
