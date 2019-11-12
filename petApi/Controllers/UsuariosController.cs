@@ -63,7 +63,7 @@ namespace petApi.Controllers
                 return NotFound();
 
             //Alterando apenas duas propriedades para testar
-            usuario.nome = usu.nome;
+            usuario.nome_usu = usu.nome_usu;
             usuario.email = usu.email;
 
             this.usuRepository.Update(usuario);
@@ -91,7 +91,7 @@ namespace petApi.Controllers
         {
             try
             {
-                var usu = this.usuRepository.Autenticar(usuario.nome, usuario.senha);
+                var usu = this.usuRepository.Autenticar(usuario.nome_usu, usuario.senha);
     
                 if (usu == null)
                     return Unauthorized();

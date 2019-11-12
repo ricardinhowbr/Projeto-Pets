@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace petApi.DTO
@@ -12,6 +13,7 @@ namespace petApi.DTO
 
         }
 
+        [Key]
         public int id { get; set; }
         public int qtd_aplicacao { get; set; }
         public DateTime data_aplicacao{ get; set; }

@@ -32,11 +32,11 @@ namespace petApi.Controllers
             //Método para gerar um token para usuários que estão pedindo autenticação, validando suas credenciais.
 
             //TODO: -> elaborar validação mais decente...
-            if(request.nome == "Teste" && request.senha=="naumsei")
+            if(request.nome_usu == "Teste" && request.senha=="naumsei")
             {
                 var claims = new[]
                 {
-                     new Claim(ClaimTypes.Name, request.nome)
+                     new Claim(ClaimTypes.Name, request.nome_usu)
                      //,new Claim(ClaimTypes.Role, "Admin") //Definir perfil do usuários, se quiser...
                 };
 
