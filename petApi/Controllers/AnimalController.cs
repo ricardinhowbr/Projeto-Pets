@@ -8,69 +8,71 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 using petApi.DTO;
 using petApi.Repository;
+using petApi.Repositorio;
 
 namespace petApi.Controllers
 {
     [Route("pet/api/[Controller]")]
     [Authorize()]
-    public class UsuariosController : Controller
+    public class AnimalController : Controller
     {
-        private readonly IUsuarioRepository usuRepository;
+        private readonly IAnimalRepository aniRepository;
 
-        public UsuariosController(IUsuarioRepository repo)
+        public AnimalController(IAnimalRepository repo)
         {
             //Injetar o serviço do repositório...
-            this.usuRepository = repo;
+            this.aniRepository = repo;
         }
 
         [Route("listar")]
         [HttpGet]
-        public IEnumerable<Usuario> GetAll()
+        public IEnumerable<Animal> GetAll()
         {
-            return this.usuRepository.Getall();
+            return this.aniRepository.Getall();
         }
 
-        [Route("ObterUsuario/{id?}")]
+        [Route("Obter/{id?}")]
         [HttpGet]
-        public IActionResult ObterUsuario(int id) 
+        public IActionResult Obter(int id) 
         {
-            var usu = this.usuRepository.Obter(id);
+            var animal = this.aniRepository.Obter(id);
 
-            if(usu == null)
+            if(animal == null)
                 return NotFound();
             
-            return new ObjectResult(usu);
+            return new ObjectResult(animal);
         }
 
         [Route("Add")]
         [HttpPost]
-        public IActionResult Criar([FromBody] Usuario usu)
+        public IActionResult Criar([FromBody] Animal animal)
         {
-            if(usu == null)
+            if(animal == null)
                 return BadRequest();
 
-            this.usuRepository.AddUsuario(usu);
+            this.aniRepository.Add(animal);
 
             return new NoContentResult(); 
             //return CreatedAtRoute("ObterUsuario", new { Id = usu.cod_usuario}, usu);
         }
 
         [HttpPut("Atualizar/{id?}")]
-        public IActionResult Atualizar(int id, [FromBody] Usuario usu)
+        public IActionResult Atualizar(int id, [FromBody] Animal animal)
         {
-            if(usu == null || usu.cod_usuario != id)
+            if(animal == null || animal.cod_pet != id)
                 return BadRequest();
 
-            var usuario = this.usuRepository.Obter(id);
+            var pet = this.aniRepository.Obter(id);
 
-            if(usuario == null)
+            if(pet == null)
                 return NotFound();
 
             //Alterando apenas duas propriedades para testar
-            usuario.nome_usu = usu.nome_usu;
-            usuario.email = usu.email;
+            pet.tipo = animal.tipo;
+            pet.peso_kg = animal.peso_kg;
+            pet.nome_pet = animal.nome_pet;
 
-            this.usuRepository.Update(usuario);
+            this.aniRepository.Update(pet);
 
             return new NoContentResult(); //Status code 204
         }
@@ -79,12 +81,12 @@ namespace petApi.Controllers
         [HttpDelete("Deletar/{id?}")]
         public IActionResult Deletar(int id)
         {
-            var usuario = this.usuRepository.Obter(id);
+            var usuario = this.aniRepository.Obter(id);
 
             if(usuario == null)
                 return NotFound();
 
-            this.usuRepository.Remove(id);
+            this.aniRepository.Remove(id);
 
             return new NoContentResult(); //Status code 204
         }

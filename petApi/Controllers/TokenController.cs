@@ -49,9 +49,12 @@ namespace petApi.Controllers
                 // de assinaturas digitais para tokens
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); 
 
+                var issuer = configuration["Issuer"]; 
+                var audience = configuration["Audience"]; 
+
                 var token = new JwtSecurityToken(
-                    issuer: configuration["Issuer"],  //emissor - Teste Pudim Issuer"
-                    audience: configuration["Audience"], //"Teste Pudim Audience"
+                    issuer: issuer,  //emissor - Teste Pudim Issuer"
+                    audience: audience, //"Teste Pudim Audience"
                     claims: claims,
                     expires: DateTime.Now.AddMinutes(15), //Validade do token
                     signingCredentials: creds
