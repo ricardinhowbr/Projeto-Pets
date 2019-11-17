@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saude_pet/components/input.dart';
+import 'package:saude_pet/styles/color.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -11,17 +12,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    final logo = Hero(
-      tag: 'user',
-      child: CircleAvatar(
-        backgroundColor: Colors.transparent,
-        radius: 48.0,
-        child: Icon(
-          Icons.account_circle,
-          size: 150,
-        ),
-      ),
-    );
+     final logo = Hero(
+       tag: 'user',
+       child: Image.asset("lib/images/logo.png",height: 275,),
+       );
 
     final email = new TextInput(textHintInput: 'Email');
     final password = new PasswordInput(passwordHintInput: "Senha");
@@ -44,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
     final forgotLabel = FlatButton(
       child: Text(
         'Não tem conta? Cadastre-se',
-        style: TextStyle(color: Colors.lightBlueAccent[400]),
+        style: TextStyle(color: accentColor),
       ),
       onPressed: () {
        Navigator.pushNamed(context, "/cadastro");
@@ -59,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
             logo,
-            SizedBox(height: 108.0),
+            SizedBox(height: 40.0),
             email,
             SizedBox(height: 8.0),
             password,

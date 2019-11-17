@@ -29,11 +29,8 @@ class _HomePageState extends State<HomePage> {
       CardListImage(
         titleCard: "Perfil do Pet",
         iconsCard: "lib/images/dog.png",
+        routeName: "/perfilPet",
       ),
-      CardList(
-        titleCard: "Alarme",
-        iconsCard: Icons.notifications_active,
-      )
     ],
   );
   Widget build(BuildContext context) {
@@ -43,6 +40,15 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.lightBlueAccent,
         elevation: 0,
         centerTitle: true,
+        leading: IconButton(icon: Icon(Icons.arrow_back,color: Colors.transparent,), onPressed: () {},),
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){
+              Navigator.pushNamed(context, "/");
+            },
+            icon: Icon(Icons.exit_to_app),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:saude_pet/styles/color.dart';
 
-class CadastroAlarme extends StatefulWidget {
+class CadastroUsuario extends StatefulWidget {
   @override
-  _CadastroAlarmeState createState() => _CadastroAlarmeState();
+  _CadastroUsuarioState createState() => _CadastroUsuarioState();
 }
 
-class _CadastroAlarmeState extends State<CadastroAlarme> {
+class _CadastroUsuarioState extends State<CadastroUsuario> {
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
-      tag: 'alert',
+      tag: 'user',
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 48.0,
         child: Icon(
-          Icons.add_alert,
+          Icons.account_circle,
           size: 150,
         ),
       ),
@@ -24,32 +23,40 @@ class _CadastroAlarmeState extends State<CadastroAlarme> {
       keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
-        hintText: 'Nome do Alerta',
+        hintText: 'Nome Completo',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
     );
-  
-  final data = TextFormField(
+    final email = TextFormField(
+      keyboardType: TextInputType.emailAddress,
       autofocus: false,
-      keyboardType: TextInputType.datetime,
-      obscureText: false,
       decoration: InputDecoration(
-        hintText: 'Data de Notificação',
+        hintText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
     );
-  final nameVacina = TextFormField(
+
+    final password = TextFormField(
       autofocus: false,
-      keyboardType: TextInputType.text,
       obscureText: true,
       decoration: InputDecoration(
-        hintText: 'Nome da Vacina',
+        hintText: 'Password',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
     );
+    final cpf = TextFormField(
+      autofocus: false,
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: 'Cpf',
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
+    );
+
     final atualizarButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: RaisedButton(
@@ -57,33 +64,36 @@ class _CadastroAlarmeState extends State<CadastroAlarme> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          // Navigator.push(
-          //   context, MaterialPageRoute(builder: (context) => ListaPetPage()));
+          Navigator.pushNamed(context,"/cadastroUsuario");
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
-        child: Text('Novo Alarme', style: TextStyle(color: Colors.white)),
+        child: Text('Atualizar Dados', style: TextStyle(color: Colors.white)),
       ),
     );
-   
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro de Alarme"),
+        title: Text("Perfil do usuario"),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: accentColor,
+        backgroundColor: Colors.lightBlueAccent,
+        
       ),
-      body:Center(
+      backgroundColor: Colors.white,
+      body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
             logo,
-            SizedBox(height: 118.0),
+            SizedBox(height: 108.0),
             name,
             SizedBox(height: 15.0,),
-            data,
+            email,
             SizedBox(height: 15.0),
-            nameVacina,
+            password,
+            SizedBox(height: 15.0),
+            cpf,
             SizedBox(height: 30.0),
             atualizarButton,
           ],

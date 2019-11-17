@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:saude_pet/styles/color.dart';
 
-class PerfilUsuario extends StatefulWidget {
+class PerfilPet extends StatefulWidget {
   @override
-  _PerfilUsuarioState createState() => _PerfilUsuarioState();
+  _PerfilPetState createState() => _PerfilPetState();
 }
 
-class _PerfilUsuarioState extends State<PerfilUsuario> {
+class _PerfilPetState extends State<PerfilPet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +14,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Perfil Usuario",
+          "Perfil Pet",
           style: TextStyle(color: accentColor),
         ),
         leading: IconButton(
@@ -45,13 +45,18 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      Icon(Icons.account_circle,size: 80,color: accentColor,),
+                      Image.asset(
+                        'lib/images/dog.png',
+                        width: 23,
+                        height: 80,
+                        color: accentColor,
+                      ),
                       Divider(
                         color: dividerColor,
                         height: 40,
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 40,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -66,7 +71,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           Container(
                             width: 85,
                             child: Text(
-                              "Everton Santos",
+                              "Lib",
                               style: TextStyle(color: accentColor),
                             ),
                           ),
@@ -88,7 +93,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           Container(
                             width: 85,
                             child: Text(
-                              "11/05/1996",
+                              "11/05/2009",
                               style: TextStyle(color: accentColor),
                             ),
                           ),
@@ -103,15 +108,15 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           Container(
                             width: 185,
                             child: Text(
-                              "Email: ",
+                              "Raça: ",
                               style: TextStyle(color: accentColor),
                             ),
                           ),
                           Container(
                             width: 85,
                             child: Text(
-                              "Evsantos96@gmail.com",
-                              style: TextStyle(color: accentColor,fontSize: 12),
+                              "basset",
+                              style: TextStyle(color: accentColor),
                             ),
                           ),
                         ],
@@ -125,15 +130,15 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           Container(
                             width: 185,
                             child: Text(
-                              "Cpf: ",
+                              "Cor: ",
                               style: TextStyle(color: accentColor),
                             ),
                           ),
                           Container(
                             width: 85,
                             child: Text(
-                              "000.888.444-23",
-                              style: TextStyle(color: accentColor,fontSize: 12),
+                              "Castanho e Branco",
+                              style: TextStyle(color: accentColor),
                             ),
                           ),
                         ],
@@ -168,7 +173,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                             borderRadius: BorderRadius.circular(24),
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, "/cadastroUsuario");
+                            Navigator.pushNamed(context, "/atualizarPet");
                           },
                           padding: EdgeInsets.all(12),
                           color: Colors.lightBlueAccent,

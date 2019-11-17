@@ -36,16 +36,6 @@ class _ListaVacinaState extends State<ListaVacina> {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CardList(
-                    titleCard: "Busca Vacina",
-                    iconsCard: Icons.search,
-                    routeName: "",
-                  )
-                ],
-              ),
             ],
           ),
         )

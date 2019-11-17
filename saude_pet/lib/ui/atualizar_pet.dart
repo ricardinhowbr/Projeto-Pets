@@ -1,55 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:saude_pet/styles/color.dart';
 
-class CadastroAlarme extends StatefulWidget {
+class AtualizarPet extends StatefulWidget {
   @override
-  _CadastroAlarmeState createState() => _CadastroAlarmeState();
+  _AtualizarPetState createState() => _AtualizarPetState();
 }
 
-class _CadastroAlarmeState extends State<CadastroAlarme> {
+class _AtualizarPetState extends State<AtualizarPet> {
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
-      tag: 'alert',
+      tag: 'user',
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
         radius: 48.0,
         child: Icon(
-          Icons.add_alert,
+          Icons.account_circle,
           size: 150,
         ),
       ),
     );
-  final name = TextFormField(
+    final name = TextFormField(
       keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
-        hintText: 'Nome do Alerta',
+        hintText: 'Nome do Animal',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
     );
-  
-  final data = TextFormField(
-      autofocus: false,
+    final dtNascimento = TextFormField(
       keyboardType: TextInputType.datetime,
-      obscureText: false,
-      decoration: InputDecoration(
-        hintText: 'Data de Notificação',
-        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-      ),
-    );
-  final nameVacina = TextFormField(
       autofocus: false,
-      keyboardType: TextInputType.text,
-      obscureText: true,
       decoration: InputDecoration(
-        hintText: 'Nome da Vacina',
+        hintText: 'Data de Nascimento',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
     );
+    final raca = TextFormField(
+      keyboardType: TextInputType.text,
+      autofocus: false,
+      decoration: InputDecoration(
+        hintText: 'Nome da Raça',
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
+    );
+    final cor = TextFormField(
+      keyboardType: TextInputType.text,
+      autofocus: false,
+      decoration: InputDecoration(
+        hintText: 'Cor do Animal',
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
+    );
+    final sexo = TextFormField(
+      keyboardType: TextInputType.text,
+      autofocus: false,
+      decoration: InputDecoration(
+        hintText: 'Sexo do Animal',
+        contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+      ),
+    );
+
     final atualizarButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: RaisedButton(
@@ -62,28 +77,37 @@ class _CadastroAlarmeState extends State<CadastroAlarme> {
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
-        child: Text('Novo Alarme', style: TextStyle(color: Colors.white)),
+        child: Text('Nova Vacina', style: TextStyle(color: Colors.white)),
       ),
     );
-   
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cadastro de Alarme"),
+        title: Text("Perfil do Pet"),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: accentColor,
+        backgroundColor: Colors.lightBlueAccent,
       ),
-      body:Center(
+      backgroundColor: Colors.white,
+      body: Center(
         child: ListView(
           padding: EdgeInsets.only(left: 24.0, right: 24.0),
           children: <Widget>[
             logo,
-            SizedBox(height: 118.0),
+            SizedBox(height: 108.0),
             name,
-            SizedBox(height: 15.0,),
-            data,
+            SizedBox(
+              height: 15.0,
+            ),
+            dtNascimento,
             SizedBox(height: 15.0),
-            nameVacina,
+            raca,
+            SizedBox(height: 15.0),
+            cor,
+            SizedBox(
+              height: 15.0,
+            ),
+            sexo,
             SizedBox(height: 30.0),
             atualizarButton,
           ],
