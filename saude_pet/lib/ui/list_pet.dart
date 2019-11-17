@@ -14,7 +14,13 @@ class _ListaPetPageState extends State<ListaPetPage> {
           title: Text("Lista de Pets"),
           centerTitle: true,
           elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back,color: Colors.transparent,), onPressed: () {},
+          ),
           backgroundColor: Colors.lightBlueAccent,
+          actions: <Widget>[
+            new ExitSession(),
+          ],
         ),
         backgroundColor: Colors.white,
         body: Center(
@@ -40,5 +46,21 @@ class _ListaPetPageState extends State<ListaPetPage> {
             ],
           ),
         ));
+  }
+}
+
+class ExitSession extends StatelessWidget {
+  const ExitSession({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.exit_to_app),
+      onPressed: (){
+        Navigator.popAndPushNamed(context, "/");
+      },
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saude_pet/styles/color.dart';
 
 class CadastroVacina extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _CadastroVacinaState extends State<CadastroVacina> {
     final vacinaLogo = Hero(
       tag: 'vacina',
       child: CircleAvatar(
-          backgroundColor: Colors.lightBlueAccent,
+          backgroundColor: accentColor,
           radius: 48.0,
           child: Image.asset('lib/images/vacina.png')),
     );
@@ -82,6 +83,7 @@ class _CadastroVacinaState extends State<CadastroVacina> {
         title: Text("Cadastro de Vacina"),
         centerTitle: true,
         elevation: 0,
+        backgroundColor: accentColor,
       ),
       backgroundColor: Colors.white,
       body: Center(
