@@ -1,103 +1,69 @@
- 
 import 'package:flutter/material.dart';
+import 'package:saude_pet/components/input.dart';
+import 'package:saude_pet/styles/color.dart';
 
-class Login extends StatefulWidget {
+
+class LoginPage extends StatefulWidget {
+  static String tag = 'login-page';
   @override
-  _LoginState createState() => _LoginState();
+  _LoginPageState createState() => new _LoginPageState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: null,
-      body: Container(
-        decoration: BoxDecoration(
-         gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomCenter,
-                colors: [Colors.green, Colors.green[700]])
+     final logo = Hero(
+       tag: 'user',
+       child: Image.asset("lib/images/logo.png",height: 275,),
+       );
+
+    final email = new TextInput(textHintInput: 'Email');
+    final password = new PasswordInput(passwordHintInput: "Senha");
+
+    final loginButton = Padding(
+      padding: EdgeInsets.symmetric(vertical: 16.0),
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
         ),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Card(
-              elevation: 5,
-              child: Form(
-                child: Container(
-                  width: 320.0,
-                  height: 420.0,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Text(
-                            "Login",
-                            style: TextStyle(
-                                fontSize: 26.0,color: Colors.black87)
-                          ),
-                          SizedBox(
-                            width: 280.0,
-                            child: Divider(
-                              color: Color.fromRGBO(204, 204, 204, 1),
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 50.0,
-                        width: 280.0,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Usuario",
-                          ),
-                          keyboardType: TextInputType.text,
-                        ),
-                      ),
-                      Column(
-                        children: <Widget>[
-                          SizedBox(
-                            width: 280.0,
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: "Senha",
-                              ),
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(top: 10.0,),
-                            alignment: Alignment.center,
-                              child: Text(
-                            "Criar Conta",
-                            style: TextStyle(
-                                 fontSize: 12.0, ),
-                          ))
-                        ],
-                      ),
-                      Container(
-                        width: 280.0,
-                        
-                        child: RaisedButton(
-                          onPressed: (){},
-                          color: Colors.green,  
-                          child: Text(
-                            "Entrar",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
+        onPressed: () {
+          Navigator.pushNamed(context, "/listaPet");
+        },
+        padding: EdgeInsets.all(12),
+        color: Colors.lightBlueAccent,
+        child: Text('Log In', style: TextStyle(color: Colors.white)),
+      ),
+    );
+
+    final forgotLabel = FlatButton(
+      child: Text(
+        'Não tem conta? Cadastre-se',
+        style: TextStyle(color: accentColor),
+      ),
+      onPressed: () {
+       Navigator.pushNamed(context, "/cadastro");
+      },
+    );
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.only(left: 24.0, right: 24.0),
+          children: <Widget>[
+            logo,
+            SizedBox(height: 40.0),
+            email,
+            SizedBox(height: 8.0),
+            password,
+            SizedBox(height: 24.0),
+            loginButton,
+            forgotLabel
+          ],
         ),
       ),
     );
   }
 }
+
