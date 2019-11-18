@@ -6,7 +6,7 @@ using petApi.DataEF;
 
 namespace petApi.Repositorio
 {
-    public class AnimalRepository
+    public class AnimalRepository : IAnimalRepository
     {
         private readonly AnimalDBContext contexto;
 
