@@ -26,6 +26,11 @@ namespace petApi.Repositorio
             return this.contexto.Vacina.ToList();
         }
 
+        public IEnumerable<Vacina> Getall(int idpet)
+        {
+            return this.contexto.Vacina.Where(x => x.cod_pet == idpet).ToList();
+        }
+
         public Vacina Obter(int id)
         {
             return this.contexto.Vacina.FirstOrDefault(vac => vac.id == id);

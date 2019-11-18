@@ -8,6 +8,7 @@ namespace petApi.Repositorio
         void Add(Vacina vacina);
 
         IEnumerable<Vacina> Getall();
+        IEnumerable<Vacina> Getall(int idPet);
 
         Vacina Obter(int id);
 

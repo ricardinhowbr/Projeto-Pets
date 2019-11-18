@@ -8,6 +8,7 @@ namespace petApi.DTO
     [Table("Animal")]
     public class Animal
     {
+
         public Animal() { }
 
         [Key] public int cod_pet { get; set; }
@@ -16,6 +17,7 @@ namespace petApi.DTO
         public string sexo { get; set; }
         public string cor { get; set; }
         public string tipo { get; set; }
+        public string raca { get; set; }
         public DateTime data_nascimento {get; set; }
 
         public int cod_usuario { get; set; }

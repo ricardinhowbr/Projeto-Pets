@@ -33,6 +33,11 @@ namespace petApi.Repository
             return this.contexto.Usuario.FirstOrDefault(usu => usu.cod_usuario == id);
         }
 
+        public Usuario Obter(string login)
+        {
+            return this.contexto.Usuario.FirstOrDefault(usu => usu.login == login);
+        }
+
         public void Remove(int id)
         {
             var usuario = this.contexto.Usuario.FirstOrDefault(usu => usu.cod_usuario == id);

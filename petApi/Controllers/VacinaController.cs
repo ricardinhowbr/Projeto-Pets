@@ -29,6 +29,13 @@ namespace petApi.Controllers
             return this.vacinaRepository.Getall();
         }
 
+        [Route("listar/{idPet?}")]
+        [HttpGet]
+        public IEnumerable<Vacina> GetAll(int idPet)
+        {
+            return this.vacinaRepository.Getall(idPet);
+        }
+
         [Route("Obter/{id?}")]
         [HttpGet]
         public IActionResult Obter(int id) 
@@ -55,22 +62,24 @@ namespace petApi.Controllers
         }
 
         [HttpPut("Atualizar/{id?}")]
-        public IActionResult Atualizar(int id, [FromBody] Vacina vacina)
+        public IActionResult Atualizar(int id, [FromBody] Vacina newVacina)
         {
-            if(vacina == null || vacina.id != id)
+            if(newVacina == null || newVacina.id != id)
                 return BadRequest();
 
-            var pet = this.vacinaRepository.Obter(id);
+            var vacina = this.vacinaRepository.Obter(id);
 
-            if(pet == null)
+            if(vacina == null)
                 return NotFound();
 
             //Alterando apenas duas propriedades para testar
-            pet.nome_vacina = vacina.nome_vacina;
-            pet.data_aplicacao = vacina.data_aplicacao;
-            pet.qtd_aplicacao = vacina.qtd_aplicacao;
+            vacina.nome_vacina = newVacina.nome_vacina;
+            vacina.qtd_aplicacao = newVacina.qtd_aplicacao;
+            vacina.data_aplicacao = newVacina.data_aplicacao;
+            vacina.nome_aplicante = newVacina.nome_aplicante;
+            vacina.data_prox_aplicacao = newVacina.data_prox_aplicacao;
 
-            this.vacinaRepository.Update(pet);
+            this.vacinaRepository.Update(vacina);
 
             return new NoContentResult(); //Status code 204
         }

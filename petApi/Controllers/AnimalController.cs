@@ -68,9 +68,12 @@ namespace petApi.Controllers
                 return NotFound();
 
             //Alterando apenas duas propriedades para testar
+            pet.cor = animal.cor;
+            pet.raca = animal.raca;
             pet.tipo = animal.tipo;
             pet.peso_kg = animal.peso_kg;
             pet.nome_pet = animal.nome_pet;
+            pet.data_nascimento = animal.data_nascimento;
 
             this.aniRepository.Update(pet);
 

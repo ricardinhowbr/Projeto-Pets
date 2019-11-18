@@ -26,9 +26,23 @@ namespace petApi.Repositorio
             return this.contexto.Animal.ToList();
         }
 
+        public IEnumerable<Animal> Getall(int usuId)
+        {
+            return this.contexto.Animal.Where(x => x.cod_usuario == usuId).ToList();
+        }
+        public IEnumerable<Animal> Getall(string nomeUsu)
+        {
+            return this.contexto.Animal.Where( x => x.Usuario.nome_usu == nomeUsu).ToList();
+        }
+
         public Animal Obter(int id)
         {
             return this.contexto.Animal.FirstOrDefault(ani => ani.cod_pet == id);
+        }
+
+        public IEnumerable<Animal> Obter(int usuId, string nomePet)
+        {
+            return this.contexto.Animal.Where( x => x.nome_pet == nomePet && x.cod_usuario == usuId).ToList();
         }
 
         public void Remove(int id)

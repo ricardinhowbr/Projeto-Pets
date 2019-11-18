@@ -10,6 +10,7 @@ namespace petApi.Repository
         IEnumerable<Usuario> Getall();
 
         Usuario Obter(int id);
+        Usuario Obter(string login);
 
         void Remove(int id);
 
