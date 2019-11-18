@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
+using petApi.Repository;
 
 namespace petApi.Controllers
 {
@@ -17,11 +18,13 @@ namespace petApi.Controllers
 
     public class TokenController : Controller
     {
+        private readonly IUsuarioRepository usuRepo;
         private readonly IConfiguration configuration;
 
-        public TokenController(IConfiguration config)
+        public TokenController(IConfiguration config, IUsuarioRepository usuRepo)
         {
             //Para cessar a chave definida no appsetings.json usando a injeção de dependência...
+            this.usuRepo = usuRepo;
             this.configuration = config;
         }
 
@@ -30,9 +33,19 @@ namespace petApi.Controllers
         public IActionResult RequestToken([FromBody] Usuario request)
         {
             //Método para gerar um token para usuários que estão pedindo autenticação, validando suas credenciais.
+            var usu  = this.usuRepo.Obter(request.login);
+
+            if(usu == null)
+            {
+                return NotFound( Json( new
+                {
+                    success = false,
+                    message = "Usuário não encontrado"
+                }));
+            }
 
             //TODO: -> elaborar validação mais decente...
-            if(request.login == "admin" && request.senha=="123")
+            if(request.login == usu.login && request.senha == usu.senha)
             {
                 var claims = new[]
                 {

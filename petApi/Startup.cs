@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using petApi.DataEF;
 using Microsoft.AspNetCore.Http;
+using petApi.Repositorio;
 
 namespace petApi
 {
@@ -40,6 +41,8 @@ namespace petApi
             services.AddDbContext<VacinaDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
 
             //regristrando serviço....
+            services.AddTransient<IVacinaRepository, VacinaRepository>();
+            services.AddTransient<IAnimalRepository, AnimalRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             
             //especifica o esquema usado para autenticacao do tipo Bearer
@@ -89,12 +92,6 @@ namespace petApi
             app.UseHttpsRedirection();
             
             app.UseMvc();
-            // app.UseMvc(routes =>
-            // {
-            //     routes.MapRoute(
-            //         name: "default",
-            //         template: "pet/api/{controller=Home}/{action=Index}/{id?}");
-            // });
         }
     }
 }

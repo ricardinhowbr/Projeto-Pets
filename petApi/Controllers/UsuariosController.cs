@@ -42,6 +42,18 @@ namespace petApi.Controllers
             return new ObjectResult(usu);
         }
 
+        [Route("ObterUsuario/{login?}")]
+        [HttpGet]
+        public IActionResult ObterUsuario(string login) 
+        {
+            var usu = this.usuRepository.Obter(login);
+
+            if(usu == null)
+                return NotFound();
+            
+            return new ObjectResult(usu);
+        }
+
         [Route("Add")]
         [HttpPost]
         public IActionResult Criar([FromBody] Usuario usu)
@@ -67,14 +79,34 @@ namespace petApi.Controllers
                 return NotFound();
 
             //Alterando apenas duas propriedades para testar
-            usuario.nome_usu = usu.nome_usu;
+            usuario.login = usu.login;
             usuario.email = usu.email;
+            usuario.senha = usu.senha;
+            usuario.nome_usu = usu.nome_usu;
 
             this.usuRepository.Update(usuario);
 
             return new NoContentResult(); //Status code 204
         }
 
+        [HttpPut("AtualizarSenha/{id?}")]
+        public IActionResult AtualizarSenha(int id, [FromBody] Usuario usu)
+        {
+            if(usu == null || usu.cod_usuario != id)
+                return BadRequest();
+
+            var usuario = this.usuRepository.Obter(id);
+
+            if(usuario == null)
+                return NotFound();
+
+            //Alterando apenas duas propriedades para testar
+            usuario.senha = usu.senha;
+
+            this.usuRepository.Update(usuario);
+
+            return new NoContentResult(); //Status code 204
+        }
 
         [HttpDelete("Deletar/{id?}")]
         public IActionResult Deletar(int id)

@@ -6,7 +6,7 @@ using petApi.DTO;
 
 namespace petApi.Repositorio
 {
-    public class VacinaRepository
+    public class VacinaRepository : IVacinaRepository
     {
         private readonly VacinaDBContext contexto;
 
@@ -24,6 +24,11 @@ namespace petApi.Repositorio
         public IEnumerable<Vacina> Getall()
         {
             return this.contexto.Vacina.ToList();
+        }
+
+        public IEnumerable<Vacina> Getall(int idpet)
+        {
+            return this.contexto.Vacina.Where(x => x.cod_pet == idpet).ToList();
         }
 
         public Vacina Obter(int id)
@@ -47,16 +52,16 @@ namespace petApi.Repositorio
             this.contexto.SaveChanges();
         }
 
-        public void Remove(long id)
+        public void Remove(string nome)
         {
-            var entity = this.contexto.Vacina.First(vac => vac.id == id);
+            var entity = this.contexto.Vacina.First(vac => vac.nome_vacina == nome);
             this.contexto.Vacina.Remove(entity);
             this.contexto.SaveChanges();
         }
 
-        public void Remove(string nome)
+        public void Remove(int id)
         {
-            var entity = this.contexto.Vacina.First(vac => vac.nome_vacina == nome);
+            var entity = this.contexto.Vacina.First(vac => vac.id == id);
             this.contexto.Vacina.Remove(entity);
             this.contexto.SaveChanges();
         }
