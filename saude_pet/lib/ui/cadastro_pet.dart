@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:saude_pet/components/infoDialog.dart';
 
 class CadastroPagePet extends StatefulWidget {
   @override
@@ -33,6 +34,7 @@ class _CadastroPagePetState extends State<CadastroPagePet> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Data de Nascimento',
+        labelText: "Data de Nascimento",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -42,6 +44,7 @@ class _CadastroPagePetState extends State<CadastroPagePet> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Nome da Raça',
+        labelText: "Nome da Raça",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -51,6 +54,7 @@ class _CadastroPagePetState extends State<CadastroPagePet> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Cor do Animal',
+        labelText: "Cor do Animal",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -60,6 +64,7 @@ class _CadastroPagePetState extends State<CadastroPagePet> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Sexo do Animal',
+        labelText: "Sexo do Animal",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -72,8 +77,7 @@ class _CadastroPagePetState extends State<CadastroPagePet> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          // Navigator.push(
-          //   context, MaterialPageRoute(builder: (context) => ListaPetPage()));
+          infoDialog(context)
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,

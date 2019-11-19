@@ -31,11 +31,7 @@ class _ListaPetPageState extends State<ListaPetPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  CardListImage(
-                    titleCard: "Cachorro",
-                    iconsCard: 'lib/images/dog.png',
-                    routeName: "/homePage",
-                  ),
+                 
                   CardList(
                     titleCard: "Adicionar novo pet",
                     iconsCard: Icons.add_circle_outline,

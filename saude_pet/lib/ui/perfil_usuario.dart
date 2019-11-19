@@ -75,28 +75,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                       SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            width: 185,
-                            child: Text(
-                              "Data de Nascimento: ",
-                              style: TextStyle(color: accentColor),
-                            ),
-                          ),
-                          Container(
-                            width: 85,
-                            child: Text(
-                              "11/05/1996",
-                              style: TextStyle(color: accentColor),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                   
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -110,7 +89,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           Container(
                             width: 85,
                             child: Text(
-                              "Evsantos96@gmail.com",
+                              "evsantos96@gmail.com",
                               style: TextStyle(color: accentColor,fontSize: 12),
                             ),
                           ),
@@ -132,7 +111,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                           Container(
                             width: 85,
                             child: Text(
-                              "000.888.444-23",
+                              "017.705.972-98",
                               style: TextStyle(color: accentColor,fontSize: 12),
                             ),
                           ),
@@ -162,7 +141,7 @@ class _PerfilUsuarioState extends State<PerfilUsuario> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 26.0, horizontal: 36.0),
+                            vertical: 46.0, horizontal: 36.0),
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(24),

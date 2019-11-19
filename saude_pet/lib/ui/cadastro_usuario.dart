@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class CadastroUsuario extends StatefulWidget {
   @override
@@ -6,6 +8,7 @@ class CadastroUsuario extends StatefulWidget {
 }
 
 class _CadastroUsuarioState extends State<CadastroUsuario> {
+  var controller = new MaskedTextController(mask: '000.000.000-00');
   @override
   Widget build(BuildContext context) {
     final logo = Hero(
@@ -23,7 +26,8 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
       keyboardType: TextInputType.text,
       autofocus: false,
       decoration: InputDecoration(
-        hintText: 'Nome Completo',
+        hintText: 'Everton Santos de Souza',
+        labelText: "NomeCompleto",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -32,7 +36,8 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
       keyboardType: TextInputType.emailAddress,
       autofocus: false,
       decoration: InputDecoration(
-        hintText: 'Email',
+        hintText: 'evsantos96@gmail.com',
+        labelText: "Email",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -42,16 +47,20 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
       autofocus: false,
       obscureText: true,
       decoration: InputDecoration(
-        hintText: 'Password',
+        hintText: '.........',
+        labelText: "Senha",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
     );
     final cpf = TextFormField(
       autofocus: false,
-      obscureText: true,
+      obscureText: false,
+      controller: controller,
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
-        hintText: 'Cpf',
+        hintText: '01770597298',
+        labelText: "Cpf",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),

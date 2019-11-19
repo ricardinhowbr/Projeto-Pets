@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:saude_pet/components/infoDialog.dart';
 
 class CadastroPage extends StatefulWidget {
   @override
@@ -6,6 +8,7 @@ class CadastroPage extends StatefulWidget {
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  var controller = new MaskedTextController(mask: '000.000.000-00');
   @override
   Widget build(BuildContext context) {
      final logo = Hero(
@@ -24,6 +27,7 @@ class _CadastroPageState extends State<CadastroPage> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Nome Completo',
+        labelText: "Nome Completo",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -33,6 +37,7 @@ class _CadastroPageState extends State<CadastroPage> {
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'Email',
+        labelText: 'Email',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
@@ -42,14 +47,16 @@ class _CadastroPageState extends State<CadastroPage> {
       autofocus: false,
       obscureText: true,
       decoration: InputDecoration(
-        hintText: 'Password',
+        hintText: 'Senha',
+        labelText: "Senha",
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
       ),
     );
     final cpf = TextFormField(
+      controller: controller,
       autofocus: false,
-      obscureText: true,
+      obscureText: false,
       decoration: InputDecoration(
         hintText: 'Cpf',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
@@ -64,8 +71,7 @@ class _CadastroPageState extends State<CadastroPage> {
           borderRadius: BorderRadius.circular(24),
         ),
         onPressed: () {
-          // Navigator.push(
-          //   context, MaterialPageRoute(builder: (context) => ListaPetPage()));
+          infoDialog(context);
         },
         padding: EdgeInsets.all(12),
         color: Colors.lightBlueAccent,
